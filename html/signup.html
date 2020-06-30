@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>Books&Buddies | Sign Up</title>
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/styles.css">
+        
+    </head>
+    <body>
+        <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+            <div class="container">
+                <button id="toggle" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand mr-auto" href="before_login.html">Books&amp;Buddies</a>
+                <div class="collapse navbar-collapse" id="Navbar">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="before_login.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="signin.html">Login</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="signup.html" target="_blank">Sign Up</a></li> 
+                    </ul>
+                </div>
+            </div>  
+        </nav>
+
+        <header class="jumbotron header-content">
+            <div class="container">
+                <h1><span class="diff_col">Books</span>&amp;Buddies</h1>
+            </div>
+        </header>
+
+        <div class="container">
+            <form>
+                    <legend>Registration Form</legend>
+                    <div class="row form-group">
+                        <label for="fname" class="col-4 col-sm-2 col-form-label">First Name</label>
+                        <div class="col-8 col-sm-4">
+                            <input class="form-control" type="text" name="fname" id="fname" placeholder="Harry" required>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label for="lname" class="col-4 col-sm-2 col-form-label">Last Name</label>
+                        <div class="col-8 col-sm-4">
+                            <input class="form-control" type="text" name="lname" id="lname" placeholder="Potter" required>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label for="id_num" class="col-4 col-sm-2 col-form-label">Identity Number</label>
+                        <div class="col-8 col-sm-4">
+                            <input class="form-control" type="number" name="id_num" id="id_num" placeholder="191081000" required>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label for="branch" class="col-4 col-sm-2 col-form-label">Branch Name</label>
+                        <div class="col-8 col-sm-4">
+                            <select class="form-control" name="branches" id="branch">
+                                <option value="none">None</option>
+                                <option value="civil">Civil Enginnering</option>
+                                <option value="comps">Computer Science</option>
+                                <option value="elec">Electrical Engineering</option>
+                                <option value="tronic">Electronics Engineering</option>
+                                <option value="extc">Electronics and Telecommunication Enginnering</option>
+                                <option value="it">Information Technology</option>
+                                <option value="mech">Mechanical Engineering</option>
+                                <option value="prod">Production Engineering</option>
+                                <option value="text">Textile Engineering</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label for="email" class="col-4 col-sm-2 col-form-label">Email Id</label>
+                        <div class="col-8 col-sm-4">
+                            <input class="form-control" type="email" name="email" id="email" placeholder="harrypotter@gmail.com" required aria-describedby="emailHelp">
+                        </div>
+                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email id with anyone else.</small> -->
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-12 offset-sm-4 col-sm-4">
+                            <input class="form-control" type="submit" id="submit_1" value="Submit My Form" onclick="nextPage()"><br>
+                        </div>
+                    </div>   
+            </form>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <h4>&copy; Copyright Of 2020. All Rights Reserved.</h4>
+                </div>
+            </div>
+        </footer>
+
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="../js/home.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    </body>
+</html>
