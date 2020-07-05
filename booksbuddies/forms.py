@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, PasswordField, SubmitField, SelectField
-from wtforms.validators import DataRequired, Length, Email, EqualTo 
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from booksbuddies.models import User
 
 
 class RegistrationForm(FlaskForm):
@@ -17,9 +18,10 @@ class RegistrationForm(FlaskForm):
                         choices=[('none', 'None'), ('civil', 'Civil Enginnering'), ('comps', 'Computer Science'), ('elec', 'Electrical Engineering'), ('tronic', 'Electronics Engineering'), ('extc', 'Electronics and Telecommunication Enginnering'), ('it', 'Information Technology'), ('mech', 'Mechanical Engineering'), ('prod', 'Production Engineering'), ('text', 'Textile Engineering')])
     email = StringField('Email',
                         validators=[DataRequired(), Email(message='Please enter a valid email address.')], render_kw={"placeholder": "harrypotter@gmail.com"}) 
-    username = StringField('Username', validators=[DataRequired(), Length(min=4, max=20)],
+    username = StringField('Create an Username', 
+                            validators=[DataRequired(), Length(min=4, max=20)],
                             render_kw={"placeholder": "Username"})
-    password = PasswordField('Password', 
+    password = PasswordField('Create a Password', 
                             validators=[DataRequired(message='Please enter a password.')],
                             render_kw={"placeholder": "Password"})
     confirm_password = PasswordField('Confirm Password',
@@ -27,6 +29,21 @@ class RegistrationForm(FlaskForm):
                                      render_kw={"placeholder": "Password"})
     recaptcha = RecaptchaField()
     submit = SubmitField('Make My Account')  
+
+    def validate_id_num(self, id_num):
+        user = User.query.filter_by(id_num=id_num.data).first()
+        if user:
+            raise ValidationError('This id_num already belongs to someone else. Please try again with your own identity number.')
+
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user:
+            raise ValidationError('This username is taken. Please try another one.')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user:
+            raise ValidationError('This email is taken. Please try another one.')
 
 
 class LoginForm(FlaskForm):
