@@ -5,7 +5,7 @@
         <form method="POST" action="">
             {{ form.hidden_tag() }}
                 <legend>Registration Form</legend>
-                <div class="form-group">
+                <div class="row form-group">
                     {{ form.firstname.label(class="col-4 col-sm-2 col-form-label") }}
                     <div class="col-8 col-sm-4">
                         {% if form.firstname.errors %}
@@ -21,7 +21,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="row form-group">
                     {{ form.lastname.label(class="col-4 col-sm-2 col-form-label") }}
                     <div class="col-8 col-sm-4">
                         {% if form.lastname.errors %}
@@ -37,7 +37,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="row form-group">
                     {{ form.id_num.label(class="col-4 col-sm-2 col-form-label") }}
                     <div class="col-8 col-sm-4">
                         {% if form.id_num.errors %}
@@ -53,14 +53,14 @@
                     </div>
                 </div>
                 
-                <div class="form-group">
+                <div class="row form-group">
                     {{ form.branch.label(class="col-4 col-sm-2 col-form-label") }}
                     <div class="col-8 col-sm-4">
                         {{ form.branch(class="form-control") }}
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="row form-group">
                     {{ form.email.label(class="col-4 col-sm-2 col-form-label") }}
                     <div class="col-8 col-sm-4">
                         {% if form.email.errors %}
@@ -76,7 +76,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="row form-group">
                     {{ form.username.label(class="col-4 col-sm-2 col-form-label") }}
                     <div class="col-8 col-sm-4">
                         {% if form.username.errors %}
@@ -92,7 +92,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="row form-group">
                     {{ form.password.label(class="col-4 col-sm-2 col-form-label") }}
                     <div class="col-8 col-sm-4">
                         {% if form.password.errors %}
@@ -108,7 +108,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="row form-group">
                     {{ form.confirm_password.label(class="col-4 col-sm-2 col-form-label") }}
                     <div class="col-8 col-sm-4">
                         {% if form.confirm_password.errors %}
@@ -124,17 +124,20 @@
                     </div>
                 </div>
 
-            <div class=" row form-group">
-                <div class="col-12 offset-sm-4 col-sm-4">
-                    {{ form.submit(class="form-control") }}
+            <div class="row form-group">
+                <div class="col-12 offset-sm-3 col-sm-6">
+                    {{ form.submit(class="btn btn-form") }}
                 </div>
             </div>
         </form>
     </div>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            Already Have An Account? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a>
-        </small>
+    
+    <div class="container">
+        <div class="row justify-content-center justify-content-sm-start">
+            <div class="text-muted">
+                Already Have An Account? <a class="ml-2 linking" href="{{ url_for('login') }}">Login</a>
+            </div>
+        </div>
     </div>
 {% endblock content %}
 

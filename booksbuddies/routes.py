@@ -20,6 +20,7 @@ def about():
 def register():
     # print('Entered register method')
     form = RegistrationForm()
+    print('Entered register method')
     if form.validate_on_submit():
         # print("Registration Data submitted")
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -36,6 +37,7 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = LoginForm()
+    print('Login method')
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
@@ -79,7 +81,7 @@ def account():
         current_user.username = form.username.data
         current_user.email = form.email.data
         db.session.commit()
-        flash('Your account has been updated!', 'success')
+        flash('Your account has been successfully updated!', 'success')
         return redirect(url_for('account'))
     elif request.method == 'GET':
         form.firstname.data = current_user.firstname
@@ -94,7 +96,7 @@ def account():
 
 @app.route('/buy') 
 def buy():
-    return render_template('buy.html', title='Buy') 
+    return render_template('buy.html', title='Buy')   
 
 @app.route('/buy/based on subject')
 def buy2_1():
