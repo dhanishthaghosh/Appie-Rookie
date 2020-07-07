@@ -3,8 +3,8 @@ import secrets
 from PIL import Image 
 from flask import render_template, url_for, flash, redirect, request 
 from booksbuddies import app, db, bcrypt
-from booksbuddies.forms import RegistrationForm, LoginForm, UpdateAccountForm
-from booksbuddies.models import User, Post
+from booksbuddies.forms import RegistrationForm, LoginForm, UpdateAccountForm, SellForm,    OptionForm
+from booksbuddies.models import User, Book 
 from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/')
@@ -20,7 +20,7 @@ def about():
 def register():
     # print('Entered register method')
     form = RegistrationForm()
-    print('Entered register method')
+    # print('Entered register method')
     if form.validate_on_submit():
         # print("Registration Data submitted")
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -37,7 +37,7 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = LoginForm()
-    print('Login method')
+    # print('Login method')
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
@@ -94,15 +94,19 @@ def account():
     return render_template('account.html', title='My Account',
                            image_file=image_file, form=form) 
 
-@app.route('/buy') 
+@app.route('/buy', methods=['GET', 'POST']) 
 def buy():
-    return render_template('buy.html', title='Buy')   
-
-@app.route('/buy/based on subject')
-def buy2_1():
-    return render_template('buy2_1.html', title='Buy | Based on Subject') 
+    form = OptionForm()
+    return render_template('buy.html', title='Buy', form=form)   
 
 @app.route('/sell', methods=['GET', 'POST']) 
 @login_required
 def sell():
-    return render_template('sell.html', title='Sell') 
+    form = SellForm()
+    if form.validate_on_submit():
+        book = Book(bookname=form.bookname.data, authorname=form.authorname.data, subject=form.subject.data, semester=form.semester.data, author=current_user)
+        db.session.add(book)
+        db.session.commit()
+        flash('Your book has been uploaded!', 'success')
+        return redirect(url_for('home')) 
+    return render_template('sell.html', title='Sell', form=form) 

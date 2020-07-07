@@ -16,13 +16,13 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), unique=True, nullable=False)
     password = db.Column(db.String(30), nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.png')
-    posts = db.relationship('Post', backref='author', lazy=True)
+    books = db.relationship('Book', backref='author', lazy=True)
 
     def __repr__(self):
         return f"User('{self.firstname}', '{self.lastname}', '{self.id_num}', '{self.branch}', '{self.email}', '{self.username}', '{self.image_file}')"
 
 
-class Post(db.Model):
+class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     bookname = db.Column(db.String(100), nullable=False)
     authorname = db.Column(db.String(100), nullable=False)
@@ -31,4 +31,4 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Post('{self.bookname}', '{self.authorname}', '{self.subject}', '{self.semester}')"
+        return f"Book('{self.bookname}', '{self.authorname}', '{self.subject}', '{self.semester}')"

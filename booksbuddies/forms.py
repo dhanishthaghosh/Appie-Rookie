@@ -56,18 +56,20 @@ class LoginForm(FlaskForm):
         render_kw={"placeholder": "Password"})
     submit = SubmitField('Login')  
 
+
 class SellForm(FlaskForm):
     bookname = StringField('Book Name', 
-        validators=[DataRequired(), Length(min=1, max=100)],
+        validators=[DataRequired(), Length(min=1, max=150)],
         render_kw={"placeholder": "Bookname"})
     authorname = StringField('Author/s Name', 
-        validators=[DataRequired(), Length(min=1, max=100)],
+        validators=[DataRequired(), Length(min=1, max=150)],
         render_kw={"placeholder": "Author's name"})
-    subject = StringField('Subject', 
-        validators=[DataRequired()])
+    subject = StringField('Subject', validators=[DataRequired(), Length(min=1, max=150)],
+        render_kw={"placeholder": "Subject"})
     semester = SelectField('Semester', validators=[DataRequired()],
-        choices=[('sem1', 'Semester-I'), ('sem2', 'Semester-II')])
+        choices=[('sem1', 'Semester-I'), ('sem2', 'Semester-II'), ('sem3', 'Semester-III'), ('sem4', 'Semester-IV'), ('sem5', 'Semester-V'), ('sem6', 'Semester-VI'), ('sem7', 'Semester-VII'), ('sem8', 'Semester-VIII')]) 
     submit = SubmitField('Upload Book Details') 
+
 
 class UpdateAccountForm(FlaskForm):
     firstname = StringField('First Name',
@@ -102,3 +104,13 @@ class UpdateAccountForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError('This email is taken. Please choose a different one.')
+
+
+class OptionForm(FlaskForm):
+    subjectbased = StringField('Based On Subject', 
+            validators=[DataRequired(), Length(min=1, max=100)],
+            render_kw={"placeholder": "Subject"})
+    semesterbased = SelectField('Based On Semester', 
+            validators=[DataRequired()], choices=[('sem1', 'Semester-I'), ('sem2', 'Semester-II'), ('sem3', 'Semester-III'), ('sem4', 'Semester-IV'), ('sem5', 'Semester-V'), ('sem6', 'Semester-VI'), ('sem7', 'Semester-VII'), ('sem8', 'Semester-VIII')])
+    submit = SubmitField('Show Results') 
+    

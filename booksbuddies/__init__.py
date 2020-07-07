@@ -15,4 +15,4 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'warning'
 
-from booksbuddies import routes
+from booksbuddies import routes 

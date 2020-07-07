@@ -1,17 +1,30 @@
 {% extends "layout.html" %}
 {% block content %}
-    <section id="showcase">
-        <div class="container">
-            <div class="row row-content align-items-center justify-content-center">
-                <div class="col-12">
-                    <h1>The Various Categories Of Selection:</h1>
-                </div>
-            </div>
-        </div>
-    </section>
-    <hr>
 
-    <section id="options">
+<div class="container">
+    <div class="row form-group">
+        <div class="col-12 col-sm-6">
+            {{ form.subjectbased.label(class="col-form-label") }}
+            {% if form.subjectbased.errors %}
+                {{ form.subjectbased(class="form-control is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.subjectbased.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.subjectbased(class="form-control") }}
+            {% endif %}
+        </div>
+
+        <div class="col-12 col-sm-6">
+            {{ form.semesterbased.label(class="col-form-label") }}
+            {{ form.semesterbased(class="form-control") }}
+        </div>
+    </div>
+</div>
+    
+    <!-- <section id="options">
         <div class="container">
             <div class="row text-center offset-sm-4">
                     <a class="btn btn-main col-12 col-sm-6" href="buy2_1.html" role="button"><i class="fas fa-book fa-lg"></i> Based On Subject </a>
@@ -23,6 +36,6 @@
                 <a class="btn btn-main col-12 col-sm-6" href="#" role="button"><i class="fas fa-user-edit fa-lg"></i> Based On Author </a>
             </div>
         </div>
-    </section>
+    </section> -->
 
 {% endblock %}

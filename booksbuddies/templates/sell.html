@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+                <legend>Upload Your Book</legend>
+                <div class="row form-group">
+                    {{ form.bookname.label(class="col-4 col-sm-2 col-form-label") }}
+                    <div class="col-8 col-sm-4">
+                        {% if form.bookname.errors %}
+                            {{ form.bookname(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.bookname.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.bookname(class="form-control") }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    {{ form.authorname.label(class="col-4 col-sm-2 col-form-label") }}
+                    <div class="col-8 col-sm-4">
+                        {% if form.authorname.errors %}
+                            {{ form.authorname(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.authorname.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.authorname(class="form-control") }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    {{ form.subject.label(class="col-4 col-sm-2 col-form-label") }}
+                    <div class="col-8 col-sm-4">
+                        {% if form.subject.errors %}
+                            {{ form.subject(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.subject.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.subject(class="form-control") }}
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="row form-group">
+                    {{ form.semester.label(class="col-4 col-sm-2 col-form-label") }}
+                    <div class="col-8 col-sm-4">
+                        {{ form.semester(class="form-control") }}
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-12 offset-sm-3 col-sm-6">
+                        {{ form.submit(class="btn btn-form") }}
+                    </div>
+                </div>
+        </form>
+    </div>
+    
+    
+{% endblock content %}
+
