@@ -1,41 +1,60 @@
 {% extends "layout.html" %}
 {% block content %}
+    <div class="container">
+        <div class="row form-group">
+            <div class="col-12 col-sm-5">
+                {{ form.subjectbased.label(class="col-form-label") }}
+                {% if form.subjectbased.errors %}
+                    {{ form.subjectbased(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.subjectbased.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.subjectbased(class="form-control") }}
+                {% endif %}
+            </div>
 
-<div class="container">
-    <div class="row form-group">
-        <div class="col-12 col-sm-6">
-            {{ form.subjectbased.label(class="col-form-label") }}
-            {% if form.subjectbased.errors %}
-                {{ form.subjectbased(class="form-control is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.subjectbased.errors %}
-                        <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-            {% else %}
-                {{ form.subjectbased(class="form-control") }}
-            {% endif %}
-        </div>
+            <div class="col-12 col-sm-5">
+                {{ form.semesterbased.label(class="col-form-label") }}
+                {{ form.semesterbased(class="form-control") }}
+            </div>
 
-        <div class="col-12 col-sm-6">
-            {{ form.semesterbased.label(class="col-form-label") }}
-            {{ form.semesterbased(class="form-control") }}
+            <div class="col-12 col-sm">
+                {{ form.submit(class="btn btn-form") }}
+            </div>
         </div>
     </div>
-</div>
-    
-    <!-- <section id="options">
-        <div class="container">
-            <div class="row text-center offset-sm-4">
-                    <a class="btn btn-main col-12 col-sm-6" href="buy2_1.html" role="button"><i class="fas fa-book fa-lg"></i> Based On Subject </a>
-            </div>
-            <div class="row text-center offset-sm-4">
-                <a class="btn btn-main col-12 col-sm-6" href="#" role="button"><i class="fas fa-chalkboard-teacher fa-lg"></i> Based On Semester </a>
-            </div>
-            <div class="row text-center offset-sm-4">
-                <a class="btn btn-main col-12 col-sm-6" href="#" role="button"><i class="fas fa-user-edit fa-lg"></i> Based On Author </a>
-            </div>
-        </div>
-    </section> -->
 
+    {% for book in books.items %}
+        <div class="card">
+            <div class="row">
+                <div class="col-3 col-sm-4">
+                    <img src="{{ url_for('static', filename='pictures/' + book.owner.image_file) }}"> 
+                </div>
+                <div class="col-9 col-sm-8">
+                    <div class="card-body">
+                        <h5 class="card-text"><a href="{{ url_for('book', book_id=book.id) }}">{{ book.bookname }}</a></h5>
+                        <h5 class="card-text">{{ book.authorname }}</h5>
+                        <p class="card-text">{{ book.subject }}</p>
+                        <p class="card-text">{{ book.semester }}</p>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    {% endfor %}
+        
+    {% for page_num in books.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+        {% if page_num %}
+            {% if books.page == page_num %}
+                <a class="btn btn-page-active" href="{{ url_for('buy', page=page_num) }}">{{ page_num }}</a>
+            {% else %}
+                <a class="btn btn-page-link" href="{{ url_for('buy', page=page_num) }}">{{ page_num }}</a>
+            {% endif %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+    
 {% endblock %}

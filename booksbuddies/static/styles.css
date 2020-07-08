@@ -7,7 +7,10 @@ body{
 .jumbotron{
     padding: 50px 30px;
     margin: 0px auto;
-    background-color: #004d73;
+    background-image: -webkit-linear-gradient(to bottom right, #075aaa, #009fe3);
+    background-image: -moz-linear-gradient(to bottom right, #075aaa, #009fe3);
+    background-image: -o-linear-gradient(to bottom right, #075aaa, #009fe3);
+    background-image: linear-gradient(to bottom right, #075aaa, #009fe3);
     color: #f5f5f5;
     font-family: 'Lora', serif;
 }
@@ -30,12 +33,15 @@ body{
 
 footer{
     padding: 10px;
-    background-color: #007fbd;
+    background-image: -webkit-linear-gradient(to bottom right, #0066b2, #00aaff);
+    background-image: -moz-linear-gradient(to bottom right, #0066b2, #00aaff);
+    background-image: -o-linear-gradient(to bottom right, #0066b2, #00aaff);
+    background-image: linear-gradient(to bottom right, #0066b2, #00aaff);
     color: #f5f5f5;
 }
 
 .navbar-dark{
-    background-color: #00334e;
+    background-color: #01295c;
 }
 
 #toggle{
@@ -47,7 +53,7 @@ p{
 }
 
 #submit{
-    background-color: #004d73;
+    background-color: #09347a;
     color: #f5f5f5;
 }
 
@@ -56,23 +62,41 @@ p{
 }
 
 .btn{
-    background-color: #004d73;
-    color: #f5f5f5;
-    border-radius: 30px;
+    border-radius: 25px;
     margin: 10px 0px;
-}
-
-.btn:hover{
-    background-color: #007fbd;
-    color: #000000;
 }
 
 .btn-main{
     font-size: 26px;
+    background-color: #09347a;
+    color: #f5f5f5;
+}
+
+.btn-main:hover{
+    background-color: #60afdc;
+    color: #000000;
 }
 
 .btn-form{
     font-size: 18px;
+    background-color: #f5f5f5;
+    color: #09347a;
+}
+
+.btn-form:hover{
+    background-color: #09347a;
+    color: #f5f5f5;
+}
+
+.btn-page-link{
+    background-color: #dbebfa;
+    color: #09347a;
+    border: 1px solid #09347a;
+}
+
+.btn-page-active{
+    background-color: #09347a;
+    color: #f5f5f5;
 }
 
 #id_num::-webkit-outer-spin-button,

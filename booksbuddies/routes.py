@@ -1,7 +1,7 @@
 import os
 import secrets
 from PIL import Image 
-from flask import render_template, url_for, flash, redirect, request 
+from flask import render_template, url_for, flash, redirect, request, abort
 from booksbuddies import app, db, bcrypt
 from booksbuddies.forms import RegistrationForm, LoginForm, UpdateAccountForm, SellForm,    OptionForm
 from booksbuddies.models import User, Book 
@@ -28,7 +28,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         # print(firstname, lastname, id_num, branch, username, email) 
-        flash('Account created for {form.username.data}! From next time onwards you can login.', 'success')
+        flash(f'Account created for {form.username.data}! From next time onwards you can login.', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
@@ -97,16 +97,69 @@ def account():
 @app.route('/buy', methods=['GET', 'POST']) 
 def buy():
     form = OptionForm()
-    return render_template('buy.html', title='Buy', form=form)   
+    page = request.args.get('page', 1, type=int)
+    books = Book.query.paginate(page=page, per_page=2) 
+    return render_template('buy.html', title='Buy', form=form, books=books)   
 
-@app.route('/sell', methods=['GET', 'POST']) 
+@app.route('/sell/new', methods=['GET', 'POST']) 
 @login_required
-def sell():
+def sell_new():
     form = SellForm()
     if form.validate_on_submit():
-        book = Book(bookname=form.bookname.data, authorname=form.authorname.data, subject=form.subject.data, semester=form.semester.data, author=current_user)
+        book = Book(bookname=form.bookname.data, authorname=form.authorname.data, subject=form.subject.data, semester=form.semester.data, owner=current_user)
         db.session.add(book)
         db.session.commit()
         flash('Your book has been uploaded!', 'success')
         return redirect(url_for('home')) 
-    return render_template('sell.html', title='Sell', form=form) 
+    return render_template('sell_new.html', title='Sell New Book', form=form, 
+                            legend='Upload Your Book Details') 
+
+@app.route("/book/<int:book_id>")
+def book(book_id):
+    print('buying a book')
+    book = Book.query.get_or_404(book_id)
+    return render_template('book.html', title=book.bookname, book=book)  
+
+
+@app.route('/book/<int:book_id>/update', methods=['GET', 'POST'])
+@login_required
+def book_update(book_id):
+    book = Book.query.get_or_404(book_id)
+    if book.owner != current_user:
+        abort(403)
+    form = SellForm()
+    if form.validate_on_submit():
+        book.bookname = form.bookname.data
+        book.authorname = form.authorname.data
+        book.subject = form.subject.data
+        book.semester = form.semester.data
+        db.session.commit()
+        flash('Your book details has been updated.', 'success') 
+        return redirect(url_for('book', book_id=book.id)) 
+    elif request.method == 'GET':
+        form.bookname.data = book.bookname
+        form.authorname.data = book.authorname
+        form.subject.data = book.subject
+        form.semester.data = book.semester 
+    return render_template('sell_new.html', title='Update Book Details',
+                           form=form, legend='Update Your Book Details') 
+
+
+@app.route("/book/<int:book_id>/delete", methods=['POST'])
+@login_required
+def book_delete(book_id):
+    book = Book.query.get_or_404(book_id)
+    if book.owner != current_user:
+        abort(403)
+    db.session.delete(book)
+    db.session.commit()
+    flash('Your book has been deleted!', 'success')
+    return redirect(url_for('home'))
+
+
+@app.route("/user/<string:username>")
+def user_books(username):
+    page = request.args.get('page', 1, type=int)
+    user = User.query.filter_by(username=username).first_or_404()
+    books = Book.query.filter_by(owner=user).paginate(page=page, per_page=2)
+    return render_template('user_books.html', books=books, user=user) 

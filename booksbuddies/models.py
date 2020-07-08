@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), unique=True, nullable=False)
     password = db.Column(db.String(30), nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.png')
-    books = db.relationship('Book', backref='author', lazy=True)
+    books = db.relationship('Book', backref='owner', lazy=True)
 
     def __repr__(self):
         return f"User('{self.firstname}', '{self.lastname}', '{self.id_num}', '{self.branch}', '{self.email}', '{self.username}', '{self.image_file}')"
