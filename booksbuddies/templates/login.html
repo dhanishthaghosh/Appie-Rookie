@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <legend>Login Form</legend>
+            <div class="row form-group">
+                {{ form.username.label(class="col-4 col-sm-2 col-form-label") }}
+                <div class="col-8 col-sm-4">
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username(class="form-control") }}
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="row form-group">  
+                {{ form.password.label(class="col-4 col-sm-2 col-form-label") }}
+                <div class="col-8 col-sm-4">
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control") }}
+                    {% endif %} 
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-12 offset-sm-3 col-sm-6">
+                    {{ form.submit(class="btn btn-form") }}
+                </div>
+            </div>
+
+            <div class="text-muted">
+                <a href="{{ url_for('reset_request') }}">Forgot Password?</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center justify-content-sm-start">
+            <div class="text-muted">
+                Don't Have An Account? Create One. <a class="ml-2 linking" href="{{ url_for('register') }}">Register</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

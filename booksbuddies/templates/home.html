@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+    <section id="showcase">
+        <div class="container">
+            <div class="row row-content align-items-center justify-content-center">
+                <div class="col-12">
+                    <h1>Books and Buddies, a community which helps people help others.</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr>
+
+    <section id="options">
+        <div class="container">
+            <div class="row text-center">
+                    <a class="btn btn-main col-12 col-sm-6" href="{{ url_for('buy') }}" role="button"><i class="fas fa-swatchbook fa-lg"></i> Buy Books </a>
+
+                    <a class="btn btn-main col-12 col-sm-6" href="{{ url_for('sell_new') }}" role="button"><i class="fas fa-swatchbook fa-lg"></i> Sell Books </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

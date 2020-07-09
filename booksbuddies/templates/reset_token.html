@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <legend>Reset Password</legend>
+            <div class="row form-group">
+                {{ form.password.label(class="col-4 col-sm-2 col-form-label") }}
+                <div class="col-8 col-sm-4">
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control") }}
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="row form-group">  
+                {{ form.confirm_password.label(class="col-4 col-sm-2 col-form-label") }}
+                <div class="col-8 col-sm-4">
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control") }}
+                    {% endif %} 
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-12 offset-sm-3 col-sm-6">
+                    {{ form.submit(class="btn btn-form") }}
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

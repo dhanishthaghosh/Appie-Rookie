@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row form-group">
+            <div class="col-12 col-sm-5">
+                {{ form.subjectbased.label(class="col-form-label") }}
+                {% if form.subjectbased.errors %}
+                    {{ form.subjectbased(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.subjectbased.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.subjectbased(class="form-control") }}
+                {% endif %}
+            </div>
+
+            <div class="col-12 col-sm-5">
+                {{ form.semesterbased.label(class="col-form-label") }}
+                {{ form.semesterbased(class="form-control") }}
+            </div>
+
+            <div class="col-12 col-sm">
+                {{ form.submit(class="btn btn-form") }}
+            </div>
+        </div>
+    </div>
+
+    {% for book in books.items %}
+        <div class="card">
+            <div class="row">
+                <div class="col-3 col-sm-4">
+                    <img src="{{ url_for('static', filename='pictures/' + book.owner.image_file) }}"> 
+                </div>
+                <div class="col-9 col-sm-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{{ url_for('book', book_id=book.id) }}">{{ book.bookname }}</a></h5>
+                        <h5 class="card-subtitle">{{ book.authorname }}</h5>
+                        <p class="card-text">{{ book.subject }}</p>
+                        <p class="card-text">{{ book.semester }}</p>
+                        
+                    </div>
+                </div>
+            </div> 
+        </div>
+    {% endfor %}
+        
+    {% for page_num in books.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+        {% if page_num %}
+            {% if books.page == page_num %}
+                <a class="btn btn-page-active" href="{{ url_for('buy', page=page_num) }}">{{ page_num }}</a>
+            {% else %}
+                <a class="btn btn-page-link" href="{{ url_for('buy', page=page_num) }}">{{ page_num }}</a>
+            {% endif %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+    
+{% endblock %}
