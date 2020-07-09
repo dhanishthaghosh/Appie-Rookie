@@ -114,3 +114,22 @@ class OptionForm(FlaskForm):
             validators=[DataRequired()], choices=[('sem1', 'Semester-I'), ('sem2', 'Semester-II'), ('sem3', 'Semester-III'), ('sem4', 'Semester-IV'), ('sem5', 'Semester-V'), ('sem6', 'Semester-VI'), ('sem7', 'Semester-VII'), ('sem8', 'Semester-VIII')])
     submit = SubmitField('Show Results') 
     
+
+class RequestResetForm(FlaskForm):
+    email = StringField('Email',
+                        validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError('There is no account with this email address. You need to register first.') 
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Create a New Password', 
+                        validators=[DataRequired(message='Please enter a password.')],
+                        render_kw={"placeholder": "Password"})
+    confirm_password = PasswordField('Confirm Password',
+                        validators=[DataRequired(), EqualTo('password', message='Passwords must match.')],
+                        render_kw={"placeholder": "Password"})
+    submit = SubmitField('Reset Password') 
