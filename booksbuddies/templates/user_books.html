@@ -5,14 +5,14 @@
         <div class="card">
             <div class="row">
                 <div class="col-3 col-sm-4">
-                    <img src="{{ url_for('static', filename='pictures/' + book.owner.image_file) }}"> 
+                    <img class="img-fluid" src="{{ url_for('static', filename='pictures/books/' + book.book_image) }}"> 
                 </div>
                 <div class="col-9 col-sm-8">
                     <div class="card-body">
-                        <h5 class="card-text"><a href="{{ url_for('book', book_id=book.id) }}">{{ book.bookname }}</a></h5>
-                        <h5 class="card-text">{{ book.authorname }}</h5>
-                        <p class="card-text">{{ book.subject }}</p>
-                        <p class="card-text">{{ book.semester }}</p>
+                        <p><b>Book: </b><a href="{{ url_for('book', book_id=book.id) }}">{{ book.bookname }}</a></p>
+                        <p><b>Author: </b>{{ book.authorname }}</p>
+                        <p><b>Subject: </b>{{ book.subject }}</p>
+                        <p><b>Semester: </b>{{ book.semester }}</p>
                     </div>
                 </div>
             </div> 

@@ -3,14 +3,14 @@
     <div class="card">
         <div class="row">
             <div class="col-3 col-sm-4">
-                <img src="{{ url_for('static', filename='pictures/' + book.owner.image_file) }}"> 
+                <img class="img-fluid" src="{{ url_for('static', filename='pictures/books/' + book.book_image) }}"> 
             </div>
             <div class="col-9 col-sm-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{ book.bookname }}</h5>
-                    <h5 class="card-subtitle">{{ book.authorname }}</h5>
-                    <p class="card-text">{{ book.subject }}</p>
-                    <p class="card-text">{{ book.semester }}</p>
+                    <p><b>Book: </b>{{ book.bookname }}</p>
+                    <p><b>Author: </b>{{ book.authorname }}</p>
+                    <p><b>Subject: </b>{{ book.subject }}</p>
+                    <p><b>Semester: </b>{{ book.semester }}</p>
                     <hr>
                     {% if book.owner == current_user %}
                         <div>
@@ -18,8 +18,9 @@
                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
                         </div>
                     {% else %}
-                        <p class="card-text"><a href="{{ url_for('user_books', username=book.owner.username) }}">{{ book.owner.firstname + ' ' + book.owner.lastname }}</a></p>
-                        <p class="card-text">{{ book.owner.email }}</p>
+                        <p><em>Seller:</em></p><hr>
+                        <p><b>Username: </b><a href="{{ url_for('user_books', username=book.owner.username) }}">{{ book.owner.firstname + ' ' + book.owner.lastname }}</a></p>
+                        <p><b>Email: </b>{{ book.owner.email }}</p>
                     {% endif %}
                 </div>
             </div>
@@ -45,4 +46,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
+{% endblock %} 

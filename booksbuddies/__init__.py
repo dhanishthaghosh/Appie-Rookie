@@ -4,6 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt 
 from flask_login import LoginManager
 from flask_mail import Mail
+from flask_migrate import Migrate
+
 
 app = Flask (__name__,
             instance_relative_config=False,
@@ -11,7 +13,8 @@ app = Flask (__name__,
             static_folder="static")
 app.config['SECRET_KEY'] = '91d54e9262c3491e8a22b74c2d0e2bca'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app) 
+db = SQLAlchemy(app)
+migrate = Migrate(app) 
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
