@@ -37,19 +37,18 @@
             </div>
 
             <div class="row form-group">
-                <div class="col-12 offset-sm-3 col-sm-6">
+                <div class="col-6 offset-sm-2 col-sm-2">
                     {{ form.submit(class="btn btn-form") }}
                 </div>
-            </div>
-
-            <div class="text-muted">
-                <a href="{{ url_for('reset_request') }}">Forgot Password?</a>
+                <div class="col-6 col-sm text-mute-align text-muted">
+                    <a href="{{ url_for('reset_request') }}">Forgot Password?</a>
+                </div>
             </div>
         </form>
     </div>
 
     <div class="container">
-        <div class="row justify-content-center justify-content-sm-start">
+        <div class="row justify-content-center justify-content-sm-start mb-2">
             <div class="text-muted">
                 Don't Have An Account? Create One. <a class="ml-2 linking" href="{{ url_for('register') }}">Register</a>
             </div>

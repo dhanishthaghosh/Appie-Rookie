@@ -54,11 +54,6 @@ p{
     margin-bottom: 0;
 }
 
-#submit{
-    background-color: #09347a;
-    color: #f5f5f5;
-}
-
 #options{
     margin: 30px 0px;
 }
@@ -83,6 +78,7 @@ p{
     font-size: 18px;
     background-color: #f5f5f5;
     color: #09347a;
+    border: 3px solid #09347a;
 }
 
 .btn-form:hover{
@@ -140,4 +136,17 @@ blockquote:before {
 
 .blockquote-footer{
     background: #f5f5f5;
+}
+
+.book_img{
+    width: 300px;
+    height: 300px;
+}
+
+.btn-result{
+    margin-top: 31px;
+}
+
+.text-mute-align{
+    margin-top: 18px;
 }

@@ -4,7 +4,7 @@ from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, SelectField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from booksbuddies.models import User
+from booksbuddies.models import User, Book
 
 
 
@@ -93,6 +93,7 @@ class UpdateAccountForm(FlaskForm):
                             validators=[DataRequired(), Length(min=9, max=9)])
     branch = SelectField('Branch Name', 
                         choices=[('none', 'None'), ('civil', 'Civil Enginnering'), ('comps', 'Computer Science'), ('elec', 'Electrical Engineering'), ('tronic', 'Electronics Engineering'), ('extc', 'Electronics and Telecommunication Enginnering'), ('it', 'Information Technology'), ('mech', 'Mechanical Engineering'), ('prod', 'Production Engineering'), ('text', 'Textile Engineering')])
+    mobile = StringField('Mobile Number', validators=[DataRequired(), Length(min=10, max=10)])
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=4, max=20)])
     email = StringField('Email',

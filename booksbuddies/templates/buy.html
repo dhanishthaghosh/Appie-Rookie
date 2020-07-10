@@ -24,7 +24,7 @@
                 </div>
     
                 <div class="col-12 col-sm">
-                    {{ form.submit(class="btn btn-form mt-3") }}
+                    {{ form.submit(class="btn btn-form btn-result") }}
                 </div>
             </div>
         </form>   
@@ -34,7 +34,7 @@
         <div class="card">
             <div class="row">
                 <div class="col-3 col-sm-4">
-                    <img class="img-fluid" src="{{ url_for('static', filename='pictures/books/' + book.book_image) }}"> 
+                    <img class="img-fluid book_img" src="{{ url_for('static', filename='pictures/books/' + book.book_image) }}"> 
                 </div>
                 <div class="col-9 col-sm-8">
                     <div class="card-body">

@@ -3,7 +3,7 @@
     <div class="card">
         <div class="row">
             <div class="col-3 col-sm-4">
-                <img class="img-fluid" src="{{ url_for('static', filename='pictures/books/' + book.book_image) }}"> 
+                <img class="img-fluid book_img" src="{{ url_for('static', filename='pictures/books/' + book.book_image) }}"> 
             </div>
             <div class="col-9 col-sm-8">
                 <div class="card-body">
@@ -18,10 +18,10 @@
                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
                         </div>
                     {% else %}
-                        <p><em>Seller:</em></p><hr>
-                        <p><b>Username: </b><a href="{{ url_for('user_books', username=book.owner.username) }}">{{ book.owner.firstname + ' ' + book.owner.lastname }}</a></p>
-                        <p><b>Email: </b>{{ book.owner.email }}</p>
-                        <p><b>Mobile: </b>{{ book.owner.mobile }}</p>
+                        <p><em>Seller:</em></p>
+                        <p><i class="fas fa-user-circle fa-lg"></i>  <a href="{{ url_for('user_books', username=book.owner.username) }}">{{ book.owner.firstname + ' ' + book.owner.lastname }}</a></p><br>
+                        <p><i class="fas fa-envelope fa-lg"></i>  <a href="mailto:{{ book.owner.email }}">{{ book.owner.email }}</a></p><br>
+                        <p><i class="fas fa-mobile-alt fa-mobile-alt"></i>  {{ book.owner.mobile }} </p>
                     {% endif %}
                 </div>
             </div>

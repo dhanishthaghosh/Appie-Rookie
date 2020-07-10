@@ -108,14 +108,16 @@ def buy():
     books = Book.query.paginate(page=page, per_page=2) 
     return render_template('buy.html', title='Buy', form=form, books=books)   
 
+
 @app.route('/sell/new', methods=['GET', 'POST']) 
 @login_required
 def sell_new():
     form = SellForm()
+    picture_file = None
     if form.validate_on_submit():
-        if form.picture.data: 
-            picture_file = save_picture(form.picture.data, 'books')
-            current_user.book_image = picture_file
+        if form.book_image.data: 
+            picture_file = save_picture(form.book_image.data, 'books')
+            book.book_image = picture_file
         book = Book(bookname=form.bookname.data, authorname=form.authorname.data, subject=form.subject.data, semester=form.semester.data, book_image=picture_file,  owner=current_user) 
         db.session.add(book)
         db.session.commit()
@@ -128,6 +130,7 @@ def sell_new():
 @login_required
 def book(book_id):
     book = Book.query.get_or_404(book_id)
+    print(book.owner, current_user)
     return render_template('book.html', title=book.bookname, book=book)  
 
 
@@ -139,13 +142,14 @@ def book_update(book_id):
         abort(403)
     form = SellForm()
     if form.validate_on_submit():
-        if form.picture.data: 
-            picture_file = save_picture(form.picture.data, 'books')
-            current_user.book_image = picture_file 
+        if form.book_image.data: 
+            picture_file = save_picture(form.book_image.data, 'books')
+            book.book_image = picture_file 
         book.bookname = form.bookname.data
         book.authorname = form.authorname.data
         book.subject = form.subject.data
         book.semester = form.semester.data
+        book.book_image = form.book_image.data
         db.session.commit()   
         flash('Your book details has been updated.', 'success')  
         return redirect(url_for('book', book_id=book.id)) 
@@ -154,7 +158,8 @@ def book_update(book_id):
         form.authorname.data = book.authorname
         form.subject.data = book.subject
         form.semester.data = book.semester 
-    book_image = url_for('static', filename='pictures/books/' + current_user.book_image) 
+        form.book_image.data = book.book_image
+    book_image = url_for('static', filename='pictures/books/' + book.book_image) 
     return render_template('sell_new.html', title='Update Book Details',
                            form=form, book_image=book_image, legend='Update Your Book Details')  
 
