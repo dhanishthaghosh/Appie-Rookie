@@ -79,7 +79,7 @@ class SellForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired(), Length(min=1, max=150)],
         render_kw={"placeholder": "Subject"})
     semester = SelectField('Semester', validators=[DataRequired()],
-        choices=[('Semester-I', 'Semester-I'), ('Semester-II', 'Semester-II'), ('Semester-III', 'Semester-III'), ('Semester-IV', 'Semester-IV'), ('Semester-V', 'Semester-V'), ('Semester-VI', 'Semester-VI'), ('Semester-VII', 'Semester-VII'), ('Semester-VIII', 'Semester-VIII')]) 
+        choices=[('', 'Select a Semester'), ('Semester-I', 'Semester-I'), ('Semester-II', 'Semester-II'), ('Semester-III', 'Semester-III'), ('Semester-IV', 'Semester-IV'), ('Semester-V', 'Semester-V'), ('Semester-VI', 'Semester-VI'), ('Semester-VII', 'Semester-VII'), ('Semester-VIII', 'Semester-VIII')]) 
     book_image = FileField('Upload Book Picture', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Upload Book Details')  
 
@@ -124,7 +124,7 @@ class OptionForm(FlaskForm):
     subjectbased = StringField('Based On Subject',
             render_kw={"placeholder": "Subject"})
     semesterbased = SelectField('Based On Semester', 
-            choices=[('', 'All Semesters'), ('sem1', 'Semester-I'), ('sem2', 'Semester-II'), ('sem3', 'Semester-III'), ('sem4', 'Semester-IV'), ('sem5', 'Semester-V'), ('sem6', 'Semester-VI'), ('sem7', 'Semester-VII'), ('sem8', 'Semester-VIII')])
+            choices=[('', 'All Semesters'), ('Semester-I', 'Semester-I'), ('Semester-II', 'Semester-II'), ('Semester-III', 'Semester-III'), ('Semester-IV', 'Semester-IV'), ('Semester-V', 'Semester-V'), ('Semester-VI', 'Semester-VI'), ('Semester-VII', 'Semester-VII'), ('Semester-VIII', 'Semester-VIII')])
     submit = SubmitField('Show Results') 
     
 

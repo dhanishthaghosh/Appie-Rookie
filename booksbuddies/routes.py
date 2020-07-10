@@ -96,15 +96,21 @@ def account():
 def buy():
     form = OptionForm()
     page = request.args.get('page', 1, type=int) 
-    print('Here', form.semesterbased.data, form.subjectbased.data)
     if form.validate_on_submit():
         entered_sub = form.subjectbased.data if form.subjectbased.data else ''
         entered_sem = form.semesterbased.data if form.semesterbased.data else ''
-        if len(entered_sub) > 0 or len(entered_sem) > 0:
-            books = Book.query.filter(Book.subject.like(f'%{entered_sub}%'), Book.semester.like(f'%{entered_sem}%')) \
-                        .paginate(page=page, per_page=2)
+        if len(entered_sub) > 0 and len(entered_sem) > 0:
+            books = Book.query.filter(Book.subject.like(f'%{entered_sub}%'), Book.semester == entered_sem).paginate(page=page, per_page=2)
             return render_template('buy.html', title='Buy', form=form, books=books)
-    
+        elif len(entered_sub) > 0:
+            books = Book.query.filter(Book.subject.like(f'%{entered_sub}%')).paginate(page=page, per_page=2)
+            return render_template('buy.html', title='Buy', form=form, books=books)
+        elif len(entered_sem) > 0:
+            books = Book.query.filter(Book.semester == entered_sem).paginate(page=page, per_page=2)
+            return render_template('buy.html', title='Buy', form=form, books=books)
+        else:
+            pass
+        
     books = Book.query.paginate(page=page, per_page=2) 
     return render_template('buy.html', title='Buy', form=form, books=books)   
 
