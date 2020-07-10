@@ -117,7 +117,6 @@ def sell_new():
     if form.validate_on_submit():
         if form.book_image.data: 
             picture_file = save_picture(form.book_image.data, 'books')
-            book.book_image = picture_file
         book = Book(bookname=form.bookname.data, authorname=form.authorname.data, subject=form.subject.data, semester=form.semester.data, book_image=picture_file,  owner=current_user) 
         db.session.add(book)
         db.session.commit()
@@ -149,7 +148,6 @@ def book_update(book_id):
         book.authorname = form.authorname.data
         book.subject = form.subject.data
         book.semester = form.semester.data
-        book.book_image = form.book_image.data
         db.session.commit()   
         flash('Your book details has been updated.', 'success')  
         return redirect(url_for('book', book_id=book.id)) 
