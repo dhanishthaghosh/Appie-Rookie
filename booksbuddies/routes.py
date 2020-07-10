@@ -22,7 +22,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(firstname=form.firstname.data, lastname=form.lastname.data, id_num=form.id_num.data, branch=form.branch.data, username=form.username.data, email=form.email.data, password=hashed_password)
+        user = User(firstname=form.firstname.data, lastname=form.lastname.data, id_num=form.id_num.data, branch=form.branch.data, mobile=form.mobile.data, username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
         flash(f'Account created for {form.username.data}! From next time onwards you can login.', 'success')
@@ -76,6 +76,7 @@ def account():
         current_user.branch = form.branch.data 
         current_user.username = form.username.data
         current_user.email = form.email.data
+        current_user.mobile = form.mobile.data
         db.session.commit()
         flash('Your account has been successfully updated!', 'success')
         return redirect(url_for('account'))
@@ -86,6 +87,7 @@ def account():
         form.branch.data = current_user.branch
         form.username.data = current_user.username
         form.email.data = current_user.email
+        form.mobile.data = current_user.mobile 
     image_file = url_for('static', filename='pictures/users/' + current_user.image_file)
     return render_template('account.html', title='My Account',
                            image_file=image_file, form=form) 

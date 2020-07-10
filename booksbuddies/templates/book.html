@@ -21,6 +21,7 @@
                         <p><em>Seller:</em></p><hr>
                         <p><b>Username: </b><a href="{{ url_for('user_books', username=book.owner.username) }}">{{ book.owner.firstname + ' ' + book.owner.lastname }}</a></p>
                         <p><b>Email: </b>{{ book.owner.email }}</p>
+                        <p><b>Mobile: </b>{{ book.owner.mobile }}</p>
                     {% endif %}
                 </div>
             </div>

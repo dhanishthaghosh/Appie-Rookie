@@ -1,9 +1,11 @@
+import phonenumbers
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, SelectField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from booksbuddies.models import User
+
 
 
 class RegistrationForm(FlaskForm):
@@ -15,11 +17,13 @@ class RegistrationForm(FlaskForm):
                         render_kw={"placeholder": "Potter"})
     id_num = StringField('Identity Number',
                             validators=[DataRequired(), Length(min=9, max=9)],
-                            render_kw={"placeholder": "19108100"})
+                            render_kw={"placeholder": "19108100"}) 
     branch = SelectField('Branch Name', 
                         choices=[('none', 'None'), ('civil', 'Civil Enginnering'), ('comps', 'Computer Science'), ('elec', 'Electrical Engineering'), ('tronic', 'Electronics Engineering'), ('extc', 'Electronics and Telecommunication Enginnering'), ('it', 'Information Technology'), ('mech', 'Mechanical Engineering'), ('prod', 'Production Engineering'), ('text', 'Textile Engineering')])
     email = StringField('Email',
                         validators=[DataRequired(), Email(message='Please enter a valid email address.')], render_kw={"placeholder": "harrypotter@gmail.com"}) 
+    mobile = StringField('Mobile Number', validators=[DataRequired(), Length(min=10, max=10)],
+                            render_kw={"placeholder": "Mobile Number"}) 
     username = StringField('Create an Username', 
                             validators=[DataRequired(), Length(min=4, max=20)],
                             render_kw={"placeholder": "Username"})
@@ -46,6 +50,14 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('This email is taken. Please try another one.')
+    
+    def validate_mobile(self, mobile):
+        try:
+            p = phonenumbers.parse(mobile.data, 'IN')
+            if not phonenumbers.is_valid_number(p):
+                raise ValueError()
+        except (phonenumbers.phonenumberutil.NumberParseException, ValueError):
+            raise ValidationError('Invalid phone number') 
 
 
 class LoginForm(FlaskForm):
