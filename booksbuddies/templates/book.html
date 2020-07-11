@@ -20,9 +20,9 @@
                         </div>
                     {% else %}
                         <p><em>Seller:</em></p>
-                        <p><i class="fas fa-user-circle fa-lg"></i>  <a href="{{ url_for('user_books', username=book.owner.username) }}">{{ book.owner.firstname + ' ' + book.owner.lastname }}</a></p><br>
-                        <p><i class="fas fa-envelope fa-lg"></i>  <a href="mailto:{{ book.owner.email }}">{{ book.owner.email }}</a></p><br>
-                        <p><i class="fas fa-mobile-alt fa-mobile-alt"></i>  {{ book.owner.mobile }} </p>
+                        <p><i class="fas fa-user-circle fa-lg"></i>&nbsp;&nbsp;&nbsp;<a href="{{ url_for('user_books', username=book.owner.username) }}">{{ book.owner.firstname + ' ' + book.owner.lastname }}</a></p>
+                        <p><i class="fas fa-envelope fa-lg"></i>&nbsp;&nbsp;&nbsp;<a href="mailto:{{ book.owner.email }}">{{ book.owner.email }}</a></p>
+                        <p><i class="fas fa-mobile-alt fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="tel:{{ book.owner.mobile }}">{{ book.owner.mobile }}</a></p>
                     {% endif %}
                 </div>
             </div>
