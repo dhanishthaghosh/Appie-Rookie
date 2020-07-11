@@ -39,6 +39,10 @@ footer{
     background-image: -o-linear-gradient(to bottom right, #0066b2, #00aaff);
     background-image: linear-gradient(to bottom right, #0066b2, #00aaff);
     color: #f5f5f5;
+    /* position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0; */
 }
 
 .navbar-dark{
