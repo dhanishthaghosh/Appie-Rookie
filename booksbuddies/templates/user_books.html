@@ -2,7 +2,7 @@
 {% block content %}
     <h1 class="mb-4">Books uploaded by {{ user.username }} ({{ books.total }})</h1>
     {% for book in books.items %}
-        <div class="card">
+        <div class="card mb-2">
             <div class="row">
                 <div class="col-3 col-sm-4">
                     <img class="img-fluid book_img" src="{{ url_for('static', filename='pictures/books/' + book.book_image) }}"> 

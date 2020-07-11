@@ -187,7 +187,7 @@ def user_books(username):
     page = request.args.get('page', 1, type=int)
     user = User.query.filter_by(username=username).first_or_404()
     books = Book.query.filter_by(owner=user).paginate(page=page, per_page=2)
-    return render_template('user_books.html', books=books, user=user) 
+    return render_template('user_books.html', books=books, user=user, title='My Books') 
 
 
 def send_reset_email(user):
