@@ -123,7 +123,7 @@ def sell_new():
     if form.validate_on_submit():
         if form.book_image.data: 
             picture_file = save_picture(form.book_image.data, 'books')
-        book = Book(bookname=form.bookname.data, authorname=form.authorname.data, subject=form.subject.data, semester=form.semester.data, book_image=picture_file,  owner=current_user) 
+        book = Book(bookname=form.bookname.data, authorname=form.authorname.data, subject=form.subject.data, semester=form.semester.data, book_image=picture_file,  owner=current_user, price=form.price.data) 
         db.session.add(book)
         db.session.commit()
         flash('Your book has been uploaded!', 'success')
@@ -135,7 +135,6 @@ def sell_new():
 @login_required
 def book(book_id):
     book = Book.query.get_or_404(book_id)
-    print(book.owner, current_user)
     return render_template('book.html', title=book.bookname, book=book)  
 
 
@@ -154,6 +153,7 @@ def book_update(book_id):
         book.authorname = form.authorname.data
         book.subject = form.subject.data
         book.semester = form.semester.data
+        book.price = form.price.data
         db.session.commit()   
         flash('Your book details has been updated.', 'success')  
         return redirect(url_for('book', book_id=book.id)) 
@@ -163,6 +163,7 @@ def book_update(book_id):
         form.subject.data = book.subject
         form.semester.data = book.semester 
         form.book_image.data = book.book_image
+        form.price.data = book.price
     book_image = url_for('static', filename='pictures/books/' + book.book_image) 
     return render_template('sell_new.html', title='Update Book Details',
                            form=form, book_image=book_image, legend='Update Your Book Details')  

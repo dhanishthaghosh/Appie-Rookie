@@ -31,12 +31,16 @@ The Home tab displays two buttons labelled Buy and Sell. The Buy button will tak
 
 The seller can upload their books by filling in the form provided in the 'sell book' option of the home page or the navigation bar. They can update their book information by visiting their account page.
 
-Account information can be updated by any user who is logged in. They can change their profile picture, username and many more information. 
+Account information can be updated by any user who is logged in. They can change their profile picture, username and many more information. Like any typical website, this has a registration and login page. 
 
-Like any typical website, this has a registration and login page. 
+For viewing individual book and more info about the seller, user can click in the book title of every book displayed which will direct them to info page. They can go back to the buy page with the back button or by clicking the buy tab on the navbar. 
 
-* GitHub repository link: https://github.com/dhanishthaghosh/Appie-Rookie
-* Website Link: 
+## Important Links
+
+***
+
+* GitHub repository link: [Appie-Rookie](https://github.com/dhanishthaghosh/Appie-Rookie)
+* Website Link: [Books&Buddies](https://booksbuddies.herokuapp.com/)
 * Google Drive Link: 
 
 ## Technology Stack
@@ -49,7 +53,7 @@ Like any typical website, this has a registration and login page.
 4. Bootstrap (CSS Framework)
 5. SQLite 
 
-### Project Setup
+## Project Setup
 
 ***
 
@@ -57,20 +61,20 @@ Like any typical website, this has a registration and login page.
 * Install Python 3.7 or later versions (if available)
 * On the command line navigate to directory of cloned repository and run following command to install python packages `pip install requirements.txt`
 
-### Usage
+## Usage
 
 ***
 
 * On the project's root directory, run `python run.py`
 * Open a browser and type url `localhost:5000`
 
-### Applications
+## Applications
 
 ***
 
 The website is created to help the newcomers as well as the seniors to buy and sell second-hand books. It is an effective alternative of the choas which happens at the beginning of every new academic year/semester. 
 
-### Future Scope
+## Future Scope
 
 ***
 
@@ -79,6 +83,6 @@ The website is created to help the newcomers as well as the seniors to buy and s
 * An automatic inventory management
 * User dedicated SQL server management (MySQL, Postgres)
 
-### Screenshots
+## Screenshots
 
 

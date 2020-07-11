@@ -1,8 +1,9 @@
 import phonenumbers
+from decimal import Decimal
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, SelectField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, SelectField, TextAreaField, DecimalField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from booksbuddies.models import User, Book
 
@@ -79,9 +80,14 @@ class SellForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired(), Length(min=1, max=150)],
         render_kw={"placeholder": "Subject"})
     semester = SelectField('Semester', validators=[DataRequired()],
-        choices=[('', 'Select a Semester'), ('Semester-I', 'Semester-I'), ('Semester-II', 'Semester-II'), ('Semester-III', 'Semester-III'), ('Semester-IV', 'Semester-IV'), ('Semester-V', 'Semester-V'), ('Semester-VI', 'Semester-VI'), ('Semester-VII', 'Semester-VII'), ('Semester-VIII', 'Semester-VIII')]) 
+        choices=[('', 'Select a Semester'), ('Semester-I', 'Semester-I'), ('Semester-II', 'Semester-II'), ('Semester-III', 'Semester-III'), ('Semester-IV', 'Semester-IV'), ('Semester-V', 'Semester-V'), ('Semester-VI', 'Semester-VI'), ('Semester-VII', 'Semester-VII'), ('Semester-VIII', 'Semester-VIII')])
+    price = DecimalField('Price', places=2) 
     book_image = FileField('Upload Book Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
-    submit = SubmitField('Upload Book Details')  
+    submit = SubmitField('Upload Book Details')
+
+    def validate_price(self, price):
+        if not (isinstance(price.data, Decimal) and price.data > Decimal(0) ) :
+            raise ValidationError('Please enter a valid price.')
 
 
 class UpdateAccountForm(FlaskForm):

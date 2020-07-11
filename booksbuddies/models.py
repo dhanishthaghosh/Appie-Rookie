@@ -44,8 +44,9 @@ class Book(db.Model):
     authorname = db.Column(db.String(100), nullable=False)
     subject = db.Column(db.String(100), nullable=False)
     semester = db.Column(db.String(30), nullable=False)
+    price = db.Column(db.Numeric(5,2), nullable=False)
     book_image = db.Column(db.String(30), nullable=False, default='books.png')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Book('{self.bookname}', '{self.authorname}', '{self.subject}', '{self.semester}')"
+        return f"Book('{self.bookname}', '{self.authorname}', '{self.subject}', '{self.semester}', '{self.price}', '{self.book_image}')"
