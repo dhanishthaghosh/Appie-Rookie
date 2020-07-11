@@ -80,7 +80,7 @@ class SellForm(FlaskForm):
         render_kw={"placeholder": "Subject"})
     semester = SelectField('Semester', validators=[DataRequired()],
         choices=[('', 'Select a Semester'), ('Semester-I', 'Semester-I'), ('Semester-II', 'Semester-II'), ('Semester-III', 'Semester-III'), ('Semester-IV', 'Semester-IV'), ('Semester-V', 'Semester-V'), ('Semester-VI', 'Semester-VI'), ('Semester-VII', 'Semester-VII'), ('Semester-VIII', 'Semester-VIII')]) 
-    book_image = FileField('Upload Book Picture', validators=[FileAllowed(['jpg', 'png'])])
+    book_image = FileField('Upload Book Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField('Upload Book Details')  
 
 
@@ -98,7 +98,7 @@ class UpdateAccountForm(FlaskForm):
                            validators=[DataRequired(), Length(min=4, max=20)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
-    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField('Update Information')
 
     def validate_id_num(self, id_num):
