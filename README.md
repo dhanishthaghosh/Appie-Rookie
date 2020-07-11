@@ -9,7 +9,6 @@
 ***
 
 * Dhanishtha Ghosh- dhanishthaghosh@gmail.com
-* Sanghamitra Ranganathan- ranganathansanghamitra@gmail.com
 * Sneha Takle- snehatakle5@gmail.com 
 
 ## Mentors
@@ -41,7 +40,8 @@ For viewing individual book and more info about the seller, user can click in th
 
 * GitHub repository link: [Appie-Rookie](https://github.com/dhanishthaghosh/Appie-Rookie)
 * Website Link: [Books&Buddies](https://booksbuddies.herokuapp.com/)
-* Google Drive Link: 
+* Google Drive Link (for images): [Image Folder](https://drive.google.com/drive/folders/11g9W9YESkWTGAGYSja0D9Ah99kD78lUT?usp=sharing)  
+* Google Drive Link (for demo video): [Demo Video](https://drive.google.com/file/d/1o7sg3xYAyfUsUcslwR5uwwWlfkIsG7C8/view?usp=sharing) 
 
 ## Technology Stack
 
@@ -85,4 +85,10 @@ The website is created to help the newcomers as well as the seniors to buy and s
 
 ## Screenshots
 
+***
 
+![Image1](https://drive.google.com/uc?export=view&id=1NH4nGgQaOvrzd4BOXXIXBz8AsFAzJhBV)
+
+![Image2](https://drive.google.com/uc?export=view&id=1UiR_9oFGcj-AWdq44D5SSTN8Gwo_HYbI)
+
+![Image3](https://drive.google.com/uc?export=view&id=1MPzJUbP0GT4RCvXLuWYppdir9OdXVnuh)
